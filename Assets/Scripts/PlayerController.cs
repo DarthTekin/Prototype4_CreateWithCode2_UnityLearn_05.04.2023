@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1.0f;
     public bool hasPowerup;
-
+    public float speed = 3.0f;
     private float powerupStrength = 15.0f;
 
+    public AudioClip sumoSound;
+    public AudioClip poerupSound;
+    private AudioSource playerAudio;
     public GameObject powerupIndicator;
     private GameObject focalPoint;
-
     private Rigidbody playerRb;
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAudio = GetComponent<AudioSource>();
         focalPoint = GameObject.Find("Focal Point");
     }
 
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Powerup"))
         {
             hasPowerup = true;
+            playerAudio.PlayOneShot(poerupSound, 1.0f);
             powerupIndicator.SetActive(true);
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountDownRoutine());
@@ -54,6 +57,7 @@ public class PlayerController : MonoBehaviour
             Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
 
             enemyRigidbody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+            playerAudio.PlayOneShot(sumoSound, 1.0f);
             Debug.Log("Collided with" + collision.gameObject.name + "with powerup set to" + hasPowerup);
         }
     }
