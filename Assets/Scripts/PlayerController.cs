@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private float powerupStrength = 15.0f;
 
     public AudioClip sumoSound;
-    public AudioClip poerupSound;
+    public AudioClip powerupSound;
     private AudioSource playerAudio;
     public GameObject powerupIndicator;
     private GameObject focalPoint;
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Powerup"))
         {
             hasPowerup = true;
-            playerAudio.PlayOneShot(poerupSound, 1.0f);
+            playerAudio.PlayOneShot(powerupSound, 1.0f);
             powerupIndicator.SetActive(true);
             Destroy(other.gameObject);
             StartCoroutine(PowerupCountDownRoutine());
