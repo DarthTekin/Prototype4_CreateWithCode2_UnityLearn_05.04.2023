@@ -6,10 +6,9 @@ public class SpawnManager : MonoBehaviour
 {
     public int enemyCount;
     public int waveNumber = 1;
-
     private float spawnRange = 9.0f;
 
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
     public GameObject powerupPrefab;
 
     // Start is called before the first frame update
@@ -35,7 +34,8 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+            int randomEnemy = Random.Range(0, enemyPrefabs.Length);
+            Instantiate(enemyPrefabs[randomEnemy], GenerateSpawnPosition(), enemyPrefabs[randomEnemy].transform.rotation);
             Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
         }
     }
