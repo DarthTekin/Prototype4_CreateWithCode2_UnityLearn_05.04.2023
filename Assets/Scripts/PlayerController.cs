@@ -59,19 +59,20 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(7);
         hasPowerup = false;
+        currentPowerUp = PowerUpType.None;
         powerupIndicator.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        if (collision.gameObject.CompareTag("Enemy") && currentPowerUp == PowerUpType.Pushback)
         {
             Rigidbody enemyRigidbody = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
 
             enemyRigidbody.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
             playerAudio.PlayOneShot(sumoSound, 1.0f);
-            Debug.Log("Collided with" + collision.gameObject.name + "with powerup set to" + hasPowerup);
+            Debug.Log("Player Collided with" + collision.gameObject.name + "with powerup set to" + currentPowerUp.ToString());
         }
     }
 }
