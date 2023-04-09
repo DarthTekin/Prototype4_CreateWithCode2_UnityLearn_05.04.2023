@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int randomPowerup = Random.Range(0, powerupPrefabs.length);
+        int randomPowerup = Random.Range(0, powerupPrefabs.Length);
         Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(), powerupPrefabs[randomPowerup].transform.rotation);
         SpawnEnemyWave(waveNumber);
     }
@@ -37,7 +37,8 @@ public class SpawnManager : MonoBehaviour
         {
             int randomEnemy = Random.Range(0, enemyPrefabs.Length);
             Instantiate(enemyPrefabs[randomEnemy], GenerateSpawnPosition(), enemyPrefabs[randomEnemy].transform.rotation);
-            Instantiate(powerupPrefabs, GenerateSpawnPosition(), powerupPrefabs.transform.rotation);
+            int randomPowerup = Random.Range(0, powerupPrefabs.Length);
+            Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(), powerupPrefabs[randomPowerup].transform.rotation);
         }
     }
 
