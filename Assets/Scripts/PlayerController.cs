@@ -42,10 +42,16 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Powerup"))
         {
             hasPowerup = true;
+            currentPowerUp = other.gameObject.GetComponent<PowerUp>().powerUpType;
             playerAudio.PlayOneShot(powerupSound, 1.0f);
             powerupIndicator.SetActive(true);
             Destroy(other.gameObject);
-            StartCoroutine(PowerupCountDownRoutine());
+
+            if (powerupCountDown != null)
+            {
+                StopCoroutine(powerupCountDown);
+            }
+            powerupCountDown = StartCoroutine(PowerupCountDownRoutine());
         }
     }
 
