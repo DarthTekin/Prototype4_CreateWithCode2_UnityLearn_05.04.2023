@@ -6,7 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public bool hasPowerup;
     public float speed = 3.0f;
+    public float hangTime;
+    public float smashSpeed;
+    public float explosionForce;
+    public float explosionRadius;
     private float powerupStrength = 15.0f;
+    bool smashing = false;
+    float floorY;
 
     public AudioClip sumoSound;
     public AudioClip powerupSound;
