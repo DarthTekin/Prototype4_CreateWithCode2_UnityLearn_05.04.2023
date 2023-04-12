@@ -46,6 +46,12 @@ public class PlayerController : MonoBehaviour
         {
             LaunchRockets();
         }
+
+        if (currentPowerUp == PowerUpType.Smash && Input.GetKeyDown(KeyCode.Space) && !smashing)
+        {
+            smashing = true;
+            StartCoroutine(Smash());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
