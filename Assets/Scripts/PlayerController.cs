@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
 
         if (currentPowerUp == PowerUpType.Smash && Input.GetKeyDown(KeyCode.Space) && !smashing)
         {
-            smashing = true;
             StartCoroutine(Smash());
+            smashing = true;
         }
     }
 
