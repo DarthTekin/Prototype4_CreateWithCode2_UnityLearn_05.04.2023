@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasPowerup: 0
-  speed: 2
+  speed: 5
   hangTime: 0.4
   smashSpeed: 20
   explosionForce: 20
